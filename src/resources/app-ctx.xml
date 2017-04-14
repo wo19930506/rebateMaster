@@ -26,10 +26,10 @@
 	</bean>
 	
 	<!-- 使用annotation自动注册bean, 并保证@Required, @Autowired的属性被注入 -->
-	<context:component-scan base-package="cn.edm">
+	<context:component-scan base-package="com.edm">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
-	<context:component-scan base-package="test.edm" />
+<!-- 	<context:component-scan base-package="test.edm" /> -->
 	
 	<!-- 以静态变量保存ApplicationContext -->
 	<bean id="ctxHolder" class="com.edm.modules.utils.spring.CtxHolder" lazy-init="false" />
@@ -57,7 +57,7 @@
 	<!-- SqlMapClient配置 -->
 	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:sql-config.xml" />
+		<property name="configLocation" value="classpath:/resources/sql-config.xml" />
 	</bean>
 
 	<!-- SqlMapClientTemplate配置 -->
