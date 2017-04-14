@@ -17,8 +17,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 	
 	static {
 		Auth.setup();
-		Auth.load(Webs.rootPath() + "/WEB-INF/classes/LICENSE");
-		Auth.robot(Webs.webRoot() + "/WEB-INF/classes/ifcfg-eth0");
+		Auth.load(Webs.rootPath() + "/WEB-INF/classes/resources/LICENSE");
+		Auth.robot(Webs.webRoot() + "/WEB-INF/classes/resources/ifcfg-eth0");
 //		Auth.robot("/etc/sysconfig/network-scripts/ifcfg-eth0");  //LINUX系统下
 //		Auth.sends();
 	}

@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 
 import com.edm.app.auth.Auth;
 import com.edm.app.security.Users;
-import com.edm.entity.Corp;
 import com.edm.entity.Menu;
 import com.edm.entity.Role;
 import com.edm.entity.RoleMenu;
@@ -45,8 +44,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private RoleMenuService roleMenuService;
 	@Autowired
 	private RoleService roleService;
-	@Autowired
-	private CorpService corpService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws AuthenticationException, DataAccessException {
@@ -72,10 +69,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			throw new AuthErrors("账号已失效！");
 		}
 		
-		Corp corp = corpService.get(user.getCorpId());
-		if (corp == null || !corp.getStatus().equals(Status.ENABLED)) {
-			throw new AuthErrors("账号已失效！");
-		}
 		
 		Set<GrantedAuthority> grantedAuths = obtainGrantedAuthorities(user);
 
@@ -87,11 +80,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		Users users = new Users(user.getUserId(), user.getPassword(), 
 				enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, grantedAuths);
 		
-		users.setCorpId(user.getCorpId());
-		users.setCorpParentId(corp.getParentId());
 /*		users.setTriger(trigerService.isApi(user.getCorpId(), user.getUserId()));*/
-		users.setJoin(Values.get(corp.getJoinApi()).equals(Value.T) ? true : false);
-        users.setSenderValidate(Values.get(corp.getSenderValidate()).equals(1) ? true : false);
+/*		users.setJoin(Values.get(corp.getJoinApi()).equals(Value.T) ? true : false);
+        users.setSenderValidate(Values.get(corp.getSenderValidate()).equals(1) ? true : false);*/
         users.setOpenSms(Values.get(user.getOpenSms()).equals(Value.T) ? true : false);
         users.setPermissionId(user.getPermissionId());
         createPermission(users, user.getRoleId());

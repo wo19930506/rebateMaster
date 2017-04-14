@@ -20,7 +20,7 @@
 		<property name="locations">
 			<list>
 				<!-- 标准配置 -->
-				<value>classpath*:/resoures/app.properties</value>
+				<value>classpath*:/resources/app.properties</value>
 			</list>
 		</property>
 	</bean>

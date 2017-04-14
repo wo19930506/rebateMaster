@@ -7,7 +7,6 @@ public class User {
 	public static final String AUTHORITY_PREFIX = "ROLE_";
 
 	private String userId;
-	private Integer corpId;
 	private Integer roleId;
 	private String password;
 	private String email;
@@ -40,14 +39,6 @@ public class User {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
-	}
-
-	public Integer getCorpId() {
-		return corpId;
-	}
-
-	public void setCorpId(Integer corpId) {
-		this.corpId = corpId;
 	}
 
 	public Integer getRoleId() {

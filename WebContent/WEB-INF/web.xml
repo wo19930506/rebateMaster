@@ -7,8 +7,8 @@
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
-			classpath:app-ctx.xml,classpath:app-ehcache.xml,classpath:app-email.xml,classpath:app-executor.xml,
-			classpath:app-jms.xml,classpath:app-quartz.xml,classpath:app-sec.xml
+			classpath*:/resources/app-ctx.xml,classpath:/resources/app-ehcache.xml,classpath:/resources/app-email.xml,classpath:/resources/app-executor.xml,
+			classpath:/resources/app-jms.xml,classpath:/resources/app-quartz.xml,classpath:/resources/app-sec.xml
 	</param-value>
   </context-param>
   <listener>
@@ -17,7 +17,7 @@
   
   <filter>
     <filter-name>safetyFilter</filter-name>
-    <filter-class>com.edm.filter.SafetyFilter</filter-class>
+    <filter-class>com.edm.app.filter.SafetyFilter</filter-class>
   </filter>
   <filter>
     <filter-name>encodingFilter</filter-name>
@@ -33,7 +33,7 @@
   </filter>
   <filter>
     <filter-name>kaptchaFilter</filter-name>
-    <filter-class>com.edm.filter.KaptchaFilter</filter-class>
+    <filter-class>com.edm.app.filter.KaptchaFilter</filter-class>
   </filter>
   <filter>
     <filter-name>springSecurityFilterChain</filter-name>
@@ -61,34 +61,44 @@
     <dispatcher>REQUEST</dispatcher>
     <dispatcher>FORWARD</dispatcher>
   </filter-mapping>
-
+  
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>classpath:/resources/log4j.properties</param-value>
+  </context-param>
   <listener>
-    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
   </listener>
+  <listener>
+    <listener-class>
+            org.springframework.web.util.IntrospectorCleanupListener
+        </listener-class>
+  </listener>
+  
   <listener>
     <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
   </listener>
   <listener>
-    <listener-class>cn.edm.web.listener.StartupListener</listener-class>
+    <listener-class>com.edm.app.listener.StartupListener</listener-class>
   </listener>
   <servlet>
     <servlet-name>activeServlet</servlet-name>
-    <servlet-class>cn.edm.web.servlet.ActiveServlet</servlet-class>
+    <servlet-class>com.edm.servlet.ActiveServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>uploadServlet</servlet-name>
-    <servlet-class>cn.edm.web.servlet.UploadServlet</servlet-class>
+    <servlet-class>com.edm.servlet.UploadServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>managerServlet</servlet-name>
-    <servlet-class>cn.edm.web.servlet.ManagerServlet</servlet-class>
+    <servlet-class>com.edm.servlet.ManagerServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>dispatcherServlet</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:app-mvc.xml</param-value>
+      <param-value>classpath:/resources/app-mvc.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -125,4 +135,5 @@
     <error-code>500</error-code>
     <location>/views/common/404.html</location>
   </error-page>
+
 </web-app>

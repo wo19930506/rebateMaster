@@ -1,10 +1,5 @@
 package com.edm.utils.consts;
 
-import java.util.List;
-import java.util.Map;
-
-import com.edm.entity.Lang;
-import com.google.common.collect.Maps;
 
 /**
  * 语言环境.
@@ -49,16 +44,5 @@ public enum LangMap {
         return null;
     }
     
-    public static final Map<Integer, String> none(List<Lang> langList) {
-        Map<Integer, String> map = Maps.newHashMap();
-        for (LangMap e : LangMap.values()) {
-            map.put(e.getId(), e.getName());
-        }
-        for (Lang l : langList) {
-            if (map.containsKey(l.getLang())) {
-                map.remove(l.getLang());
-            }
-        }
-        return map;
-    }
+   
 }

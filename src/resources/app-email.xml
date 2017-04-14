@@ -9,13 +9,13 @@
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl" />
 
 	<!-- MIME邮件服务类 -->
-	<bean id="mimeMailService" class="cn.edm.app.email.MimeMailService">
+	<bean id="mimeMailService" class="com.edm.app.jms.MimeMailService">
 		<property name="velocityEngine" ref="mailVelocityEngine" />
 	</bean>
 
 	<!-- VelocityEngine -->
 	<bean id="mailVelocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
-		<property name="resourceLoaderPath" value="classpath:/email/" />
+		<property name="resourceLoaderPath" value="classpath:/resources/email/" />
 	</bean>
 
 </beans>

@@ -1,10 +1,5 @@
 package com.edm.utils.consts;
 
-import java.util.List;
-import java.util.Map;
-
-import com.edm.entity.Os;
-import com.google.common.collect.Maps;
 
 /**
  * 操作系统.
@@ -48,16 +43,5 @@ public enum OsMap {
         return null;
     }
     
-    public static final Map<Integer, String> none(List<Os> osList) {
-        Map<Integer, String> map = Maps.newHashMap();
-        for (OsMap e : OsMap.values()) {
-            map.put(e.getId(), e.getName());
-        }
-        for (Os o : osList) {
-            if (map.containsKey(o.getOs())) {
-                map.remove(o.getOs());
-            }
-        }
-        return map;
-    }
+    
 }

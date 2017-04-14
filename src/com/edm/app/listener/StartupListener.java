@@ -20,8 +20,8 @@ public class StartupListener implements ServletContextListener {
 		try {
 			String appPath = event.getServletContext().getRealPath("");
 
-			String appFile = appPath + "/WEB-INF/classes/app.properties";
-			String i18nFile = appPath + "/WEB-INF/classes/i18n.properties";
+			String appFile = appPath + "/WEB-INF/classes/resources/app.properties";
+			String i18nFile = appPath + "/WEB-INF/classes/resources/i18n.properties";
 			Property.load(appFile, i18nFile);
 			
 			String host = Property.getStr(Config.MONGO_HOST);

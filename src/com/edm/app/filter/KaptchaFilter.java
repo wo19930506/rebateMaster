@@ -31,7 +31,7 @@ import com.edm.utils.web.Views;
 /**
  * 集成Kaptcha验证码的Filter.
  * 
- * @author yjli
+ * @author xiaobo
  */
 public class KaptchaFilter implements Filter {
 

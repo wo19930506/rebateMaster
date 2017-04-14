@@ -25,7 +25,7 @@
 			<mvc:mapping path="/mailing/**" />
 			<mvc:mapping path="/report/**" />
 			<mvc:mapping path="/step/**" />
-			<bean class="cn.edm.web.interceptor.XssInterceptor" />
+			<bean class="com.edm.app.interceptor.XssInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/*" />
@@ -34,7 +34,7 @@
 			<mvc:mapping path="/mailing/**" />
 			<mvc:mapping path="/report/**" />
 			<mvc:mapping path="/step/**" />
-			<bean class="cn.edm.web.interceptor.AuthInterceptor" />
+			<bean class="com.edm.app.interceptor.AuthInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/*" />
@@ -43,18 +43,18 @@
 			<mvc:mapping path="/mailing/**" />
 			<mvc:mapping path="/report/**" />
 			<mvc:mapping path="/step/**" />
-			<bean class="cn.edm.web.interceptor.CtxInterceptor" />
+			<bean class="com.edm.app.interceptor.CtxInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/**/page" />
-			<bean class="cn.edm.web.interceptor.PageInterceptor" />
+			<bean class="com.edm.app.interceptor.PageInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
 	<!-- Web首页 -->
 	<mvc:view-controller path="/" view-name="" />
 	
-	<bean class="cn.edm.web.handler.ExceptionHandler" />
+	<bean class="com.edm.app.handler.ExceptionHandler" />
 	
 	<!-- 使用MultipartResolver -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -65,7 +65,7 @@
 	
 	<!-- FreeMarker模板配置 -->
 	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-		<property name="configLocation" value="classpath:/freemarker.properties" />
+		<property name="configLocation" value="classpath:/resources/freemarker.properties" />
 		<property name="templateLoaderPath" value="/views" />
 	</bean>
 	

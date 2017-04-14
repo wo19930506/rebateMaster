@@ -1,10 +1,5 @@
 package com.edm.utils.consts;
 
-import java.util.List;
-import java.util.Map;
-
-import com.edm.entity.Browser;
-import com.google.common.collect.Maps;
 
 /**
  * 浏览器.
@@ -48,16 +43,5 @@ public enum BrowserMap {
         return null;
     }
     
-    public static final Map<Integer, String> none(List<Browser> browserList) {
-        Map<Integer, String> map = Maps.newHashMap();
-        for (BrowserMap e : BrowserMap.values()) {
-            map.put(e.getId(), e.getName());
-        }
-        for (Browser b : browserList) {
-            if (map.containsKey(b.getBrowser())) {
-                map.remove(b.getBrowser());
-            }
-        }
-        return map;
-    }
+   
 }
