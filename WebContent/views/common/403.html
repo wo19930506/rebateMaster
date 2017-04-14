@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/static/img/favicon.gif" type="image/x-icon" rel="shortcut icon" />
+<title>403</title>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+		font-family: "微软雅黑";
+	}
+	#error_403 {
+		text-align: center;
+		padding: 120px 0 50px 0;
+		line-height: 25px;
+		background-image: url(/static/img/logo_blue.png);
+		background-repeat: no-repeat;
+		background-position: center 40px;
+		margin-top: 15%;
+		border-top: 2px solid #000;
+		border-bottom: 2px solid #000;
+		font-size: 14px;
+	}
+	#error_403 h1 {
+		font-size: 18px;
+		font-weight: normal;
+	}
+</style>
+<script type="text/javascript">
+var ele = null;
+	ele = document.getElementById('msg');
+if (ele != null){
+	top.location.assign("/403");
+} else {	
+	window.onload = function() {
+		var obj = document.getElementById('error_403');
+		var iClient = document.documentElement.clientHeight || document.body.clientHeight;
+		var oHeight = obj.offsetHeight;
+		var top = (iClient-oHeight) / 2;
+		obj.style.top = top + "px";
+	}
+}
+</script>
+</head>
+
+<body>
+	<div id="error_403">
+		<h1>Sorry，您没有权限访问该页面</h1>
+		如果您需要了解或帮助，请发送电子邮件至<a href="mailto:sales@mtarget.cn">sales@mtarget.cn</a>与我们联系。<br />
+	</div>
+</body>
+</html>

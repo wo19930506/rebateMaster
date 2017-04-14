@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Role">
+
+	<typeAlias alias="role" type="com.edm.entity.Role" />
+	<typeAlias alias="mb" type="com.edm.modules.orm.MapBean" />
+
+	<sql id="Role.mapper">
+		r.id roleId,
+		r.role_name roleName,
+		r.role_desc roleDesc,
+		r.create_time createTime,
+		r.modify_time modifyTime,
+		r.operator operator,
+		r.type type
+	</sql>
+	
+	<sql id="Role.where">
+		where 1 = 1
+		<isNotNull prepend="and" property="roleId">
+			r.id = #roleId#
+		</isNotNull>
+		<isNotNull prepend="and" property="roleName">
+			r.role_name = #roleName#
+		</isNotNull>
+		<isNotNull prepend="and" property="type">
+			r.type = #type#
+		</isNotNull>
+		<isNotNull prepend="and" property="types">
+			r.type in <iterate property="types" open="(" close=")" conjunction=",">#types[]#</iterate>
+		</isNotNull>
+    </sql>
+	
+	<select id="Role.query" parameterClass="mb" resultClass="role">
+		select
+			<include refid="Role.mapper" />
+		from role r
+		<dynamic>
+			<include refid="Role.where" />
+		</dynamic>
+	</select>
+	
+</sqlMap>

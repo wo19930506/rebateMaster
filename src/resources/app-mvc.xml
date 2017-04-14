@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<description>Spring MVC 控制器配置</description>
+	
+	<!-- 使用@MVC注解 -->
+	<context:component-scan base-package="com.edm.controller" />
+	
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
+	<mvc:resources location="/static/" mapping="/static/**" />  	
+	
+	<!-- MVC拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<mvc:mapping path="/account/**" />
+			<mvc:mapping path="/datasource/**" />
+			<mvc:mapping path="/mailing/**" />
+			<mvc:mapping path="/report/**" />
+			<mvc:mapping path="/step/**" />
+			<bean class="cn.edm.web.interceptor.XssInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<mvc:mapping path="/account/**" />
+			<mvc:mapping path="/datasource/**" />
+			<mvc:mapping path="/mailing/**" />
+			<mvc:mapping path="/report/**" />
+			<mvc:mapping path="/step/**" />
+			<bean class="cn.edm.web.interceptor.AuthInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<mvc:mapping path="/account/**" />
+			<mvc:mapping path="/datasource/**" />
+			<mvc:mapping path="/mailing/**" />
+			<mvc:mapping path="/report/**" />
+			<mvc:mapping path="/step/**" />
+			<bean class="cn.edm.web.interceptor.CtxInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**/page" />
+			<bean class="cn.edm.web.interceptor.PageInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- Web首页 -->
+	<mvc:view-controller path="/" view-name="" />
+	
+	<bean class="cn.edm.web.handler.ExceptionHandler" />
+	
+	<!-- 使用MultipartResolver -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- max upload size: 100M -->
+		<property name="maxUploadSize" value="104857600" />
+		<property name="maxInMemorySize" value="104857600" />
+	</bean>
+	
+	<!-- FreeMarker模板配置 -->
+	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="configLocation" value="classpath:/freemarker.properties" />
+		<property name="templateLoaderPath" value="/views" />
+	</bean>
+	
+	<!-- View视图 -->
+	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="contentType" value="text/html; charset=utf-8" />
+		<property name="prefix" value="" />
+		<property name="suffix" value=".html" />
+	</bean>
+	
+</beans>

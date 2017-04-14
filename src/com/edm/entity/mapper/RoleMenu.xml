@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="RoleMenu">
+
+	<typeAlias alias="roleMenu" type="com.edm.entity.RoleMenu" />
+	<typeAlias alias="mb" type="com.edm.modules.orm.MapBean" />
+
+	<sql id="RoleMenu.mapper">
+		rm.id roleMenuId,
+		rm.role_id roleId,
+		rm.menu_id menuId,
+		rm.func_auth funcAuth
+	</sql>
+	
+	<sql id="RoleMenu.where">
+		where 1 = 1
+		<isNotNull prepend="and" property="roleMenuId">
+			rm.id = #roleMenuId#
+		</isNotNull>
+		<isNotNull prepend="and" property="roleId">
+			rm.role_id = #roleId#
+		</isNotNull>
+		<isNotNull prepend="and" property="menuId">
+			rm.menu_id = #menuId#
+		</isNotNull>
+    </sql>
+	
+	<select id="RoleMenu.query" parameterClass="mb" resultClass="roleMenu">
+		select
+			<include refid="RoleMenu.mapper" />
+		from role_menu rm
+		<dynamic>
+			<include refid="RoleMenu.where" />
+		</dynamic>
+	</select>
+	
+</sqlMap>

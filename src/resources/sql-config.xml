@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings
+		cacheModelsEnabled="false"
+		defaultStatementTimeout="15"
+		lazyLoadingEnabled="true" 
+		maxRequests="512" 
+		maxSessions="128"
+		maxTransactions="32"
+		useStatementNamespaces="false" />
+	
+	<sqlMap resource="cn/edm/model/mapper/Adapter.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Browser.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Campaign.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Category.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Cnd.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Copy.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Corp.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Cos.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Domain.xml" />
+	<sqlMap resource="cn/edm/model/mapper/File.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Filter.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Form.xml" />
+	<sqlMap resource="cn/edm/model/mapper/History.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Hour.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Ip.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Label.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Lang.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Os.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Plan.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Prop.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Recipient.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Region.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Resource.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Result.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Robot.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Selection.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Sender.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Setting.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Tag.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Task.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Template.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Touch.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Triger.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Url.xml" />
+	<sqlMap resource="cn/edm/model/mapper/User.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Role.xml" />
+	<sqlMap resource="cn/edm/model/mapper/RoleMenu.xml" />
+	<sqlMap resource="cn/edm/model/mapper/Menu.xml" />
+</sqlMapConfig>

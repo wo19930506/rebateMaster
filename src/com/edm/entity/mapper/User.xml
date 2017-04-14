@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="User">
+
+	<typeAlias alias="user" type="com.edm.entity.User" />
+	<typeAlias alias="mb" type="com.edm.modules.orm.MapBean" />
+
+	<sql id="User.mapper">
+		u.user_id userId,
+		u.corp_id corpId,
+		u.role_id roleId,
+		u.password password,
+		u.email email,
+		u.true_name trueName,
+		u.phone phone,
+		u.job job,
+		u.open_sms openSms,
+		u.rand_code randCode,
+		u.moderate moderate,
+		u.status status,
+		u.manager_id managerId,
+		u.create_time createTime,
+		u.update_time updateTime,
+		u.expire_time expireTime,
+		u.permission_id permissionId
+	</sql>
+	
+	<sql id="User.where">
+		where 1 = 1
+		<isNotNull prepend="and" property="corpId">
+			u.corp_id = #corpId#
+		</isNotNull>
+		<isNotNull prepend="and" property="corpIds">
+			u.corp_id in <iterate property="corpIds" open="(" close=")" conjunction=",">#corpIds[]#</iterate>
+		</isNotNull>
+		<isNotNull prepend="and" property="userId">
+			<isNotEqual property="nameCnd" compareValue="like">
+				u.user_id = #userId#
+			</isNotEqual>
+			<isEqual property="nameCnd" compareValue="like">
+				u.user_id like concat('%', #userId#, '%')
+			</isEqual>
+		</isNotNull>
+		<isNotNull prepend="and" property="managerId">
+			u.manager_id = #managerId#
+		</isNotNull>
+		<isNotNull prepend="and" property="roleId">
+			u.role_id = #roleId#
+		</isNotNull>
+		<isNotNull prepend="and" property="roles">
+			u.role_id in <iterate property="roles" open="(" close=")" conjunction=",">#roles[]#</iterate>
+		</isNotNull>
+		<isNotNull prepend="and" property="statuses">
+			u.status in <iterate property="statuses" open="(" close=")" conjunction=",">#statuses[]#</iterate>
+		</isNotNull>
+		<isNotNull prepend="and" property="email">
+			u.email = #email#
+		</isNotNull>
+		<isNotNull prepend="and" property="notInRoleType">
+			r.type not in <iterate property="notInRoleType" open="(" close=")" conjunction=",">#notInRoleType[]#</iterate>
+		</isNotNull>
+		<isNotNull prepend="and" property="beginTime">
+			<![CDATA[ u.update_time >= concat(#beginTime#, ' 00:00:00') ]]>
+		</isNotNull>
+		<isNotNull prepend="and" property="endTime">
+		  	<![CDATA[ u.update_time <= concat(#endTime#, ' 23:59:59') ]]>
+		</isNotNull>
+    </sql>
+	
+	<insert id="User.save" parameterClass="user">
+		insert into user (
+			user_id,
+			corp_id,
+			role_id,
+			password,
+			email,
+			true_name,
+			phone,
+			job,
+			open_sms,
+			rand_code,
+			moderate,
+			status,
+			manager_id,
+			create_time,
+			update_time,
+			expire_time,
+			permission_id
+		) values (
+			#userId#,
+			#corpId#,
+			#roleId#,
+			#password#,
+			#email#,
+			#trueName#,
+			#phone#,
+			#job#,
+			#openSms#,
+			#randCode#,
+			#moderate#,
+			#status#,
+			#managerId#,
+			now(),
+			now(),
+			null,
+			#permissionId#
+		)
+	</insert>
+	
+	<update id="User.update" parameterClass="user">
+		update user u set
+			u.corp_id = #corpId#,
+			u.role_id = #roleId#,
+			u.password = #password#,
+			u.email = #email#,
+			u.true_name = #trueName#,
+			u.phone = #phone#,
+			u.job = #job#,
+			u.open_sms = #openSms#,
+			u.rand_code = #randCode#,
+			u.moderate = #moderate#,
+			u.status = #status#,
+			u.manager_id = #managerId#,
+			u.update_time = now(),
+			u.expire_time = #expireTime#,
+			u.permission_id = #permissionId#
+		where u.user_id = #userId#
+	</update>
+	
+	<select id="User.query" parameterClass="mb" resultClass="user">
+		select
+			r.role_name roleName,
+			r.type roleType,
+			c.company company,
+			<include refid="User.mapper" />
+		from user u
+		inner join corp c on c.corp_id = u.corp_id
+		inner join role r on r.id=u.role_id
+		<dynamic>
+			<include refid="User.where" />
+			<isEqual property="orderBy" compareValue="createTime">
+				order by u.create_time $order$
+			</isEqual>
+		</dynamic>
+	</select>
+
+    <select id="User.select" parameterClass="mb" resultClass="user">
+		select
+			<include refid="User.mapper" />
+		from user u
+		<dynamic>
+			<include refid="User.where" />
+		</dynamic>
+	</select>
+	
+	<select id="User.count" parameterClass="mb" resultClass="Long">
+		select
+			count(*)
+		from user u
+		<dynamic>
+			<include refid="User.where" />
+		</dynamic>
+	</select>
+	
+	<select id="User.corp" parameterClass="mb" resultClass="Long">
+		select
+			count(*)
+		from user u
+		LEFT JOIN role r ON u.role_id = r.id 
+		WHERE 
+		u.corp_id = #corpId#
+		AND r.type = #type#
+	</select>
+	
+</sqlMap>

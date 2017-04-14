@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="History">
+
+	<typeAlias alias="history" type="com.edm.entity.History" />
+	<typeAlias alias="mb" type="com.edm.modules.orm.MapBean" />
+
+	<sql id="History.mapper">
+		h.history_id historyId,
+		h.corp_id corpId,
+		h.user_id userId,
+		h.login_time loginTime,
+		h.login_ip loginIp,
+		h.region region,
+		h.client client,
+		h.result result
+	</sql>
+	
+	<sql id="History.where">
+		where <![CDATA[ 
+			date_format(h.login_time, '%y-%m-%d') >= date_format(date_sub(now(), interval 30 day), '%y-%m-%d') 
+		]]>
+		<isNotNull prepend="and" property="userId">
+			h.user_id = #userId#
+		</isNotNull>
+    </sql>
+	
+	<insert id="History.save" parameterClass="history">
+		insert into login_history (
+			corp_id,
+			user_id,
+			login_time,
+			login_ip,
+			region,
+			client,
+			result
+		) values (
+			#corpId#,
+			#userId#,
+			now(),
+			#loginIp#,
+			#region#,
+			#client#,
+			#result#
+		)
+	</insert>
+	
+	<delete id="History.delete" parameterClass="mb">
+		delete from login_history 
+		<dynamic>
+			where <![CDATA[ 
+				date_format(login_time, '%y-%m-%d') < date_format(date_sub(now(), interval 30 day) , '%y-%m-%d') 
+			]]>
+			<isNotNull prepend="and" property="userId">
+				user_id = #userId#
+			</isNotNull>
+		</dynamic>
+	</delete>
+
+	<select id="History.count" parameterClass="mb" resultClass="Long">
+		select
+			count(*)
+		from login_history h
+		<dynamic>
+			<include refid="History.where" />
+		</dynamic>
+	</select>
+	
+	<select id="History.index" parameterClass="mb" resultClass="history">
+		select
+			<include refid="History.mapper" />
+		from login_history h
+		<dynamic>
+			<include refid="History.where" />
+			<isEqual property="orderBy" compareValue="loginTime">
+				order by h.login_time $order$
+			</isEqual>
+		</dynamic>
+		limit #firstResult#, #pageSize#
+	</select>
+</sqlMap>

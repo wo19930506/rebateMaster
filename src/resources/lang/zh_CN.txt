@@ -1,0 +1,3 @@
+regist=欢迎使用M.target
+forget=M.target密码重置
+sender=M.target发件人邮箱验证

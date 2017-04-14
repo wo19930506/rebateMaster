@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<#include "/common/meta.html" />
+	<title>${pageTitle} - 登录页</title>
+	<#include "/common/css.html" />
+	<#include "/common/js.html" />
+	<script type="text/javascript" src="${ctx}/static/js/login.js?${version}"></script>
+	<#if hasWebsite?? && hasWebsite == "true" && !userId??>
+	<script type="text/javascript" src="${website}/setcookie.php?uid=&sid="></script>
+	</#if>
+	<#if logoUrl?? && logoUrl != "" && nginxUrl?? >
+	     <#assign logo_css = "${nginxUrl}/${logoUrl}" />
+	<#else>
+	     <#assign logo_css = "static/img/logo_blue.png" />
+	</#if>
+</head>
+
+
+<body>
+<div class="login_top" style="background: url('${logo_css}') no-repeat 0px 0px;">
+	<div class="login_menu">
+		<a href="${website}" target="_blank" title="M.target官网">M.target官网</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+		<a href="${website}/contact_us.php" target="_blank" title="联系我们">联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+		<a href="${website}/faq.php" target="_blank" title="帮助中心">帮助</a>
+	</div>
+	<a href="${website}" target="_blank" title="M.target官网" class="login_website"></a>
+</div>
+<div id="login_ctn">
+	<div id="banner">
+		<div id="login">
+			<h2>登录到&nbsp;M.target</h2>
+			<div class="lgbox_content">
+				<form id="login_form" action="${ctx}/j_spring_security_check" method="post">
+					<input type="hidden" name="token" value="${token}" />
+					<#if sid??>
+						<#assign user_css = "" />
+					</#if>				
+					<ul>
+						<li>
+							<div class="user_pad">
+								<input name="j_username" type="text" class="bg user " value="${sid}" maxlength="30" />
+							</div>
+						</li>
+						<li>
+							<div class="pass_pad">
+								<input name="j_password" value="" type="password" class="bg pass" autocomplete="off" maxlength="30" />
+							</div>
+							<div class="lg_pad"></div>
+						</li>
+						<#if count gt 4>
+							<#assign code_css = "" />
+						</#if>
+						<li id="code_li" class="${code_css?default('no_display')}">
+							<input name="kaptcha" type="text" maxlength="5"  class="f_l bg code"  title="验证码" />
+							<img id="kaptcha" width="60" height="30" onclick="refresh();" src="${ctx}/kaptcha.jpg" class="f_l"  />&nbsp;<a href="javascript:refresh();">换张图片</a>
+						</li>
+						<li class="spe">
+							<#assign checked = "" />
+							<#if remember_me?? && remember_me == true>
+								<#assign checked = "checked='checked'" />
+							</#if>
+							<label>
+								<input id="remember_me" class="inx_check" type="checkbox" name="remember_me" ${checked} value="true" />&nbsp;记住用户名
+							</label>
+							<div class="f_r locat">
+								<a title="忘记密码" href="javascript:resetPassBox()">忘记密码</a> | <a title="注册" href="${website}/register.php">注册</a>						
+							</div>
+							<div style="clear:both"></div>
+						</li>
+						<li class="spe err"></li>
+						<li class="spe">
+							<div class="logbox">
+								<input name="submit" class="submit_btn" type="submit" value="登    录" />
+							</div>
+						</li>
+					</ul>
+				</form>
+			</div>
+			<div class="lgbox_bottom"></div>
+		</div>
+	</div>
+</div>
+<div class="login_bottom">
+	mtarget.cn&nbsp;&nbsp;<a href="${website}/anti_spam.php?id=26" target="_blank" title="隐私与服务协议">隐私与服务协议</a>&nbsp;&nbsp;<a href="${website}/anti_spam.php" target="_blank" title="反垃圾邮件政策">反垃圾邮件政策</a>&nbsp;&nbsp;京ICP备11035441号
+</div>
+<div class="popBox searchBox" id="passBox" style="display:none;">
+	<div class="pop_close pop_close_spe">X</div>
+	<div class="limiter" style="width:250px">
+		<div class="pop_title">找回我的密码</div>
+		<div class="pop_content">
+			<form id="forget_form" action="${ctx}/forget" method="post">
+				<input type="hidden" name="token" value="${token}" />
+				<div class="pass_cut">
+					<p class="pass_tit"><span class="f666">请输入您的用户名，我们会将密码重置邮件发送到您账号绑定的邮箱中，根据邮件内容重置密码。</span></p>
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="54">用户名：</td>
+							<td width="10" class="red">*</td>
+							<td><input type="text" class="input_txt" name="userId" value="" maxlength="20" style="width: 145px;" /></td>
+						</tr>
+					</table>
+					<div class="err"></div>
+					<div class="load_img"><img src="/static/img/loading2.gif" /></div>
+				</div>
+				<div class="cmt_wrap">
+					<input class="input_yes" type="submit" value="提交" />&nbsp;&nbsp;<input class="input_no" type="reset" value="重置" />
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

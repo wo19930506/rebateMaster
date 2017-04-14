@@ -1,0 +1,16 @@
+<#if logoUrl?? && logoUrl != "" && nginxUrl?? >
+	 <#assign logo_css = "${nginxUrl}/${logoUrl}" />
+<#else>
+	 <#assign logo_css = "static/img/logo_gray.png" />
+	</#if>
+<div id="header" class="clearfix">
+	<div class="plane clearfix">
+		<a href="/" id="logo" style="background-image: url(${logo_css});" ></a>	
+		<div class="f_r top_nav_box">
+			<ul id="topnav" class="clearfix">
+				<li><a href="javascript:void(0)" id="logout">退出系统</a></li>
+			</ul>
+			<div id="welcome">${currentUser.username}，M.target欢迎您！</div>
+		</div>
+	</div>
+</div>

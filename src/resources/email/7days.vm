@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>感谢您使用M.target电邮营销平台！</title>
+</head>
+
+<body style="background-color: #23B5D7">
+	<table width="650" border="0" align="center" cellpadding="0" cellspacing="0" style="width: 650px; margin: 0 auto; font-size: 12px; font-family: '宋体'; border-top: 5px solid #23B5D7; border-right: 2px solid #23B5D7; border-left: 2px solid #23B5D7; border-bottom: 2px solid #23B5D7;" bgcolor="#FFFFFF">
+		<tr>
+			<td align="right" style="padding: 8px 20px 0 20px;">
+				<a href="$appUrl/" target="_blank"><img src="http://139edm.com/register/logo.png" style="border: none" width="166" height="51" alt="M.target官网" title="M.target官网" /></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding-left: 20px;">
+				<h1 style="font-family: '微软雅黑'; font-size: 24px; color: #000; line-height: 32px; font-weight: normal; margin: 0;">感谢您使用M.target电邮营销平台！</h1>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 5px 20px;">
+				<p style="font-family: '宋体'; font-size: 12px; color: #000; line-height: 30px; font-weight: bold; margin: 0;">尊敬的$userName：</p>
+				<p style="font-family: '宋体'; font-size: 12px; color: #595757; line-height: 22px; margin: 0;">
+　　您于$registTime开始体验M.target的各项功能和服务，您的试用账号$userName将于7天后到期。如需继续使用，请联系我们的支持团队来协商您的需要，帮您延长试用期，或正式使用。
+				</p>
+				<p style="font-family: '宋体'; font-size: 12px; color: #595757; line-height: 22px; margin: 0;">
+　　如果您不需要再使用我们的服务，也欢迎您提出宝贵意见或建议，以帮助我们持续改善产品功能和服务。 
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 15px 20px 50px 20px;">
+				<p style="font-family: '宋体'; font-size: 12px; color: #595757; line-height: 22px; margin: 0;">您是否希望通过低成本的营销渠道、精准的营销策略、自动化的营销执行，实现品牌与消费者之间的有效互动，从而最大限度地获得回报？那么，服务周到、专业全面的许可式email邮件营销服务商M.target将会是您可长期信赖的合作伙伴。</p>
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor="#D2D2D2" height="8"></td>
+		</tr>
+		<tr>
+			<td bgcolor="#51677E" style="padding: 15px 20px 30px 20px;">
+				<p style="font-family: '宋体'; font-size: 12px; color: #fff; line-height: 22px; margin: 0;">
+				客服电话：4001 520 139&nbsp;&nbsp;邮箱：<a href="mailto:mtarget@richinfo.cn" style="color: #fff; text-decoration: none;">sales@mtarget.cn</a>&nbsp;&nbsp;传真：020-85576645<br />
+				此邮件为系统所发，请勿直接回复。
+				</p>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

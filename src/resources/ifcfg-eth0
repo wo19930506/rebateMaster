@@ -1,0 +1,9 @@
+# Broadcom Corporation NetXtreme II BCM5709 Gigabit Ethernet
+DEVICE=eth0
+BOOTPROTO=none
+HWADDR=78:2b:cb:57:e9:86
+ONBOOT=yes
+NETMASK=255.255.255.0
+IPADDR=192.168.18.156
+GATEWAY=192.168.18.1
+TYPE=Ethernet

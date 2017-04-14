@@ -1,0 +1,2 @@
+<#include "/macro/page.ftl" />
+

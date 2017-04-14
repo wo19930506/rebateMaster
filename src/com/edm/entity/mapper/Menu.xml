@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Menu">
+
+	<typeAlias alias="menu" type="com.edm.entity.Menu" />
+	<typeAlias alias="mb" type="com.edm.modules.orm.MapBean" />
+
+	<sql id="Menu.mapper">
+		m.id menuId,
+		m.parent_id parentId,
+		m.name name,
+		m.url url,
+		m.modify_time modifyTime,
+		m.data_cate dataCate,
+		m.sort sort
+	</sql>
+	
+	<sql id="Menu.where">
+		where 1 = 1
+		<isNotNull prepend="and" property="menuIds">
+			m.id in <iterate property="menuIds" open="(" close=")" conjunction=",">#menuIds[]#</iterate>
+		</isNotNull>
+		<isNotNull prepend="and" property="menuId">
+			m.id = #menuId#
+		</isNotNull>
+		<isNotNull prepend="and" property="parentId">
+			m.parent_id = #parentId#
+		</isNotNull>
+		<isNotNull prepend="and" property="roleId">
+			rm.role_id = #roleId#
+		</isNotNull>
+    </sql>
+	
+	<select id="Menu.query" parameterClass="mb" resultClass="menu">
+		select
+			<include refid="Menu.mapper" />
+		from menu m
+		<dynamic>
+			<include refid="Menu.where" />
+			order by m.sort asc
+		</dynamic>
+	</select>
+	
+	<select id="Menu.joinRM" parameterClass="mb" resultClass="menu">
+		select
+			rm.func_auth funcAuth,
+			rm.role_id roleId,
+			<include refid="Menu.mapper" />
+		from menu m inner join role_menu rm on m.id=rm.menu_id
+		<dynamic>
+			<include refid="Menu.where" />
+			order by m.sort asc
+		</dynamic>
+	</select>
+	
+</sqlMap>

@@ -1,0 +1,59 @@
+********** app.properties **********
+
+# mysql version database settings | edm 数据库
+jdbc.driver=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/db?rewriteBatchedStatements=true
+jdbc.username=
+jdbc.password=
+
+# dbcp settings
+dbcp.initial.size=5
+dbcp.max.active=40
+dbcp.max.idle=10
+dbcp.default.auto.commit=false
+
+# mongodb settings | edm mongodb
+mongo.host=192.168.18.156
+mongo.port=17017
+mongo.pool.size=40
+mongo.coll.size=2000 | 集合上限
+mongo.recipient.size=10000000 | recipient文档上限
+mongo.tag.size=5000000 | tag文档上限
+
+# activemq settings
+jms.broker_url=vm://edm?broker.persistent=false&broker.useJmx=false&broker.schedulerSupport=false
+
+# smtp setting | 邮件发送（新用户注册、找回密码...）
+smtp.host=192.168.18.156
+smtp.port=25678
+smtp.from=M.target <admin@mail.mtarget.cn>
+
+# app setting
+app.url=http://edm.cn | 前台url
+app.urls=http://192.168.22.198,http://edm.cn,https://edm.cn | CSRF过滤
+website.url= | 官网url
+resource.urls=http://mtimg.org,http://139edm.com | 模板开放JS资源
+
+concurrency.count=20 | 收件人导入导出并发数
+recipient.count=20000000 | 收件人Hash筛选上限 
+tag.count=3 | X
+repeat.size=200000 | 收件人Hash筛选文件上限
+upload.size=62914560 | 上传上限
+pipe.size=100 | 正式与测试发送边界
+template.size=512000 | 模板上限
+filter.props=email:not_end_contains=yahoo.com.cn,yahoo.cn | 属性过滤
+selection.count=3 | 收件人异步筛选上限
+sender.count=10 | 发件人上限
+
+active.logger=E:/03.workspace/resin-3.1.6/logs/active | 活跃邮箱日志
+form.logger=E:/03.workspace/resin-3.1.6/logs/form | 表单收集日志
+
+# delivery
+default.helo=139.com | 任务文件<$HELO></$HELO>
+default.skip=tiaourl.com | jump_http（跳转机）
+default.open=test2.php | jump_http open（打开统计）
+default.click=test3.php | jump_http click（点击统计）
+delivery.api=192.168.18.156 | side（触发）
+#delivery.engine=http://127.0.0.1:5544 | cacehdb （任务文件接收）
+delivery.logger=http://mtserve.net:55675 | mailllist（打开、点击详情）
+delivery.sender=http://139edm.com:55659 | mailllist（发送详情）

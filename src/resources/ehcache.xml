@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+	<diskStore path="java.io.tmpdir" />
+
+	<!-- DefaultCache setting. -->
+	<defaultCache
+		memoryStoreEvictionPolicy="LRU" 
+		eternal="false"
+		maxElementsInMemory="10000" 
+		timeToIdleSeconds="300"
+		timeToLiveSeconds="300" 
+		overflowToDisk="false" 
+		diskPersistent="false" />
+
+	<!-- Special objects setting. -->
+	
+	<cache name="concurrency"
+		memoryStoreEvictionPolicy="LRU"
+		eternal="true"
+		maxElementsInMemory="20" 
+		overflowToDisk="false" 
+		diskPersistent="false" />
+
+	<cache name="kaptcha" 
+		memoryStoreEvictionPolicy="LRU" 
+		eternal="false" 
+		timeToIdleSeconds="300"
+		timeToLiveSeconds="300"
+		maxElementsInMemory="500"
+		overflowToDisk="false" 
+		diskPersistent="false" />
+		
+	<cache name="R" 
+		memoryStoreEvictionPolicy="LRU" 
+		eternal="false" 
+		timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600"
+		maxElementsInMemory="200"
+		overflowToDisk="false" 
+		diskPersistent="false" />
+
+	<cache name="active" 
+		memoryStoreEvictionPolicy="LRU"
+		eternal="true"
+		maxElementsInMemory="100" 
+		overflowToDisk="false" 
+		diskPersistent="false" />
+		
+		
+	<cache name="ips" 
+		memoryStoreEvictionPolicy="LRU" 
+		eternal="false" 
+		timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600"
+		maxElementsInMemory="2000"
+		overflowToDisk="false" 
+		diskPersistent="false" />
+						
+</ehcache>

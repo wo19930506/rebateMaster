@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:s="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd"
+	default-lazy-init="true">
+
+	<description>SpringSecurity安全配置</description>
+
+	<!-- http安全配置 -->
+	<s:http auto-config="true" use-expressions="true">
+		<s:intercept-url pattern="/login" 					filters="none" />
+		<s:intercept-url pattern="/form/**" 				filters="none" />
+		<s:intercept-url pattern="/taskCallback" 			filters="none" />
+		<s:intercept-url pattern="/forget" 					filters="none" />
+		<s:intercept-url pattern="/settings" 				filters="none" />
+		<s:intercept-url pattern="/regist" 					filters="none" />
+		<s:intercept-url pattern="/ajaxCall" 				filters="none" />
+		<s:intercept-url pattern="/forward" 				filters="none" />
+		<s:intercept-url pattern="/online" 					filters="none" />
+		<s:intercept-url pattern="/unsubscribe" 			filters="none" />
+		<s:intercept-url pattern="/complain" 				filters="none" />
+		<s:intercept-url pattern="/download" 				filters="none" />
+		<s:intercept-url pattern="/m" 						filters="none" />
+		<s:intercept-url pattern="/static/**"				filters="none" />
+		
+		<s:intercept-url pattern="/" 						access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_RDR','ROLE_ALL')" />
+		<s:intercept-url pattern="/index" 					access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_RDR','ROLE_ALL')" />
+		
+		<s:intercept-url pattern="/step/**"					access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_ALL')" />
+		
+		<s:intercept-url pattern="/account/history/**"		access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_RDR','ROLE_ALL')" />
+		<s:intercept-url pattern="/account/password/**"		access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_RDR','ROLE_ALL')" />
+		<s:intercept-url pattern="/account/profile/view*"	access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_ALL')" />
+		<s:intercept-url pattern="/account/profile/add*"	access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_RDR','ROLE_ALL')" />
+		<s:intercept-url pattern="/account/sender/**"		access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_ALL')" />
+		<s:intercept-url pattern="/account/user/**"			access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_ALL')" />
+		<s:intercept-url pattern="/account/corp/**"			access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_ALL')" />
+		
+		<s:intercept-url pattern="/datasource/**" 			access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_ALL')" />
+		
+		<s:intercept-url pattern="/mailing/audit/**" 		access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BUK','ROLE_ALL')" />
+		<s:intercept-url pattern="/mailing/campaign/**" 	access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_ALL')" />
+		<s:intercept-url pattern="/mailing/category/**" 	access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_ALL')" />
+		<s:intercept-url pattern="/mailing/task/**" 		access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_ALL')" />
+		<s:intercept-url pattern="/mailing/template/**" 	access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_ALL')" />
+
+		<s:intercept-url pattern="/report/campaign/**"		access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_RDR','ROLE_ALL')" />
+		<s:intercept-url pattern="/report/local/**"			access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_RDR','ROLE_ALL')" />
+		<s:intercept-url pattern="/report/api/**"			access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_RDR','ROLE_ALL')" />
+		
+		<s:intercept-url pattern="/report/task/**"			access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_RDR','ROLE_ALL')" />
+		<s:intercept-url pattern="/report/touch/**"			access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_RDR','ROLE_ALL')" />
+		<s:intercept-url pattern="/report/plan/**"			access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_RDR','ROLE_ALL')" />
+		<s:intercept-url pattern="/report/triger/**"		access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_ALL')" />
+		<s:intercept-url pattern="/report/export/**"		access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_ALL')" />
+		<s:intercept-url pattern="/report/detail/**"		access="hasAnyRole('ROLE_ADM','ROLE_MGR','ROLE_BSN','ROLE_BUK','ROLE_ALL')" />
+		
+		<s:form-login login-page="/sec" authentication-success-handler-ref="loginSuccessHandler" authentication-failure-handler-ref="loginFailureHandler" />
+		<s:logout success-handler-ref="logoutHandler" />
+		
+		<s:session-management invalid-session-url="/login" session-fixation-protection="newSession">
+			<s:concurrency-control max-sessions="1" expired-url="/sec" />
+		</s:session-management>
+		
+	</s:http>
+
+	<bean id="loginSuccessHandler" class="com.edm.app.handler.LoginSuccessHandler" />
+	<bean id="loginFailureHandler" class="com.edm.app.handler.LoginFailureHandler" />
+	<bean id="logoutHandler" class="com.edm.app.handler.LogoutHandler" />
+	
+	<!-- 认证配置, 使用userDetailsService提供的用户信息 -->
+	<s:authentication-manager alias="authenticationManager">
+		<s:authentication-provider user-service-ref="userDetailsService">
+			<s:password-encoder hash="md5" />
+		</s:authentication-provider>
+	</s:authentication-manager>
+
+	<!-- 项目实现的用户查询服务 -->
+	<bean id="userDetailsService" class="com.edm.service.UserDetailsServiceImpl" />
+</beans>
