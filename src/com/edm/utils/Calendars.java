@@ -13,9 +13,8 @@ import org.joda.time.format.DateTimeFormatter;
 import com.edm.utils.web.Validates;
 
 /**
- * 日历封装类.
- * 
- * @author yjli
+ * @author xiaobo
+ * @see 日历封装类.
  */
 public class Calendars {
     
@@ -23,7 +22,7 @@ public class Calendars {
     public static final String DATE_TIME = "yyyy-MM-dd HH:mm";
     
     /**
-     * 获取DateTime.
+     * @see 获取DateTime.
      */
     public static DateTime parse(String str, String fmt) {
         DateTime datetime = null;
@@ -33,7 +32,7 @@ public class Calendars {
     }
     
     /**
-     * 获取Date字符串.
+     * @see 获取Date字符串.
      */
     public static String format(Date date, String fmt) {
         if (date == null)
@@ -43,7 +42,7 @@ public class Calendars {
     }
     
     /**
-     * 获取Date.
+     * @see 获取Date.
      */
     public static Date date(String millis) {
         Date d = null;
@@ -54,7 +53,7 @@ public class Calendars {
     }
     
     /**
-     * 获取毫秒.
+     * @see 获取毫秒.
      */
     public static long millis(String date, String fmt) {
         long ms = 0;
@@ -66,28 +65,28 @@ public class Calendars {
     }
     
     /**
-     * 获取week|month第一天.
+     * @see 获取week|month第一天.
      */
     public static DateTime start(Property property) {
         return property.withMinimumValue().millisOfDay().withMinimumValue();
     }
     
     /**
-     * 获取week|month最后一天.
+     * @see 获取week|month最后一天.
      */
     public static DateTime end(Property property) {
         return property.withMaximumValue().millisOfDay().withMaximumValue();
     }
     
     /**
-     * 获取季度. (return: 1|2|3|4)
+     * @see 获取季度. (return: 1|2|3|4)
      */
     public static int season(int month) {
         return month / 3 + (month % 3 > 0 ? 1 : 0);
     }
     
     /**
-     * 获取季度月份. (return: [1,3]|[4,6]|[7,9]|[10,12])
+     * @see 获取季度月份. (return: [1,3]|[4,6]|[7,9]|[10,12])
      */
     public static int[] seasonPos(DateTime datetime) {
         int month = datetime.getMonthOfYear(), min = 0, max = 0;
@@ -99,21 +98,21 @@ public class Calendars {
     }
     
     /**
-     * 获取总自然周数.
+     * @see 获取总自然周数.
      */
     public static int weeks(DateTime start, DateTime end) {
         return Weeks.weeksBetween(start(start.dayOfWeek()), end(end.dayOfWeek())).getWeeks() + 1;
     }
     
     /**
-     * 获取总自然月数.
+     * @see 获取总自然月数.
      */
     public static int months(DateTime start, DateTime end) {
         return Months.monthsBetween(start(start.dayOfMonth()), end(end.dayOfMonth())).getMonths() + 1;
     }
     
     /**
-     * 获取总自然季度数.
+     * @see 获取总自然季度数.
      */
     public static int seasons(DateTime start, DateTime end) {
         return season(Months.monthsBetween(

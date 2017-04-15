@@ -5,7 +5,7 @@ import java.util.HashMap;
 /**
  * MapBean类.
  * 
- * @author yjli
+ * @author xiaobo
  */
 public class MapBean extends HashMap<String, Object> {
 

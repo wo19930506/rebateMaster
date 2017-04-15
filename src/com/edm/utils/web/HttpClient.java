@@ -13,10 +13,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  * HTTP Client
- * 
- * @Date 2014年12月13日 下午2:34:57
- * @author Lich
- *
+ * @author xiaobo
+ * @see http的get和post请求
  */
 public class HttpClient {
 

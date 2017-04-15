@@ -3,7 +3,11 @@ package com.edm.utils.web;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
-
+/**
+ * 
+ * @author xiaobo
+ * @see 根据validators验证条件和参数名称来获取request请求中的参数值
+ */
 public class Https {
 
 	public static String getStr(HttpServletRequest request, String name, Object... validators) {

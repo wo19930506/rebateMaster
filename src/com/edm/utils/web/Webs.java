@@ -116,7 +116,7 @@ public class Webs {
 	}
 
 	public static void setHeader(HttpServletResponse response, String fileName) {
-		response.setCharacterEncoding("gbk");
+		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/x-msdownload");
 		response.setHeader("Content-Disposition", "attachment;fileName=" + fileName);
 	}
